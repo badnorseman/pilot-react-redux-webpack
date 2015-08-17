@@ -7,8 +7,8 @@ import EditProduct from "./edit_product";
 import NewProduct from "./new_product";
 
 class ProductMain extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       contentSelector: "",
       id: 0
@@ -21,9 +21,16 @@ class ProductMain extends Component {
     this._handleSelect = this._handleSelect.bind(this);
   }
 
-  _getEditProduct() {
-    let errors = []; // this.state.errors;
-    let product = {}; // this.state.products[this.state.id];
+  componentDidMount() {
+    const { dispatch, products } = this.props;
+    dispatch(getProducts());
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log("componentWillReceiveProps", this.props, this.state, nextProps);
+  }
+
+  _getEditProduct(errors = [], product = {}) {
     return (
       <EditProduct
         errors={errors}
@@ -35,8 +42,7 @@ class ProductMain extends Component {
     );
   }
 
-  _getNewProduct() {
-    let errors = []; // this.state.errors;
+  _getNewProduct(errors = []) {
     return (
       <NewProduct
         errors={errors}
@@ -45,8 +51,7 @@ class ProductMain extends Component {
     );
   }
 
-  _getProductList() {
-    let products = {}; //this.state.products;
+  _getProductList(products) {
     return (
       <ProductList
         products={products}
@@ -95,14 +100,18 @@ class ProductMain extends Component {
   }
 
   render() {
-    const { dispatch, products } = this.props;
+    const { isFetching, items } = this.props;
     let content;
-    console.log("render", this.props, this.state);
 
     switch (this.state.contentSelector) {
-      case "EDIT": content = this._getEditProduct(); break;
-      case "NEW": content = this._getNewProduct(); break;
-      default: content = this._getProductList();
+      case "EDIT":
+        content = this._getEditProduct();
+        break;
+      case "NEW":
+        content = this._getNewProduct();
+        break;
+      default:
+        content = this._getProductList(items);
     }
     return (
       <div>
@@ -112,10 +121,19 @@ class ProductMain extends Component {
   }
 }
 
-function select(state) {
+function mapStateToProps(state) {
+  const { products } = state;
+  const {
+    isFetching,
+    items
+  } = products || {
+    isFetching: true,
+    items: {}
+  };
   return {
-    products: state.products
+    isFetching,
+    items
   };
 }
 
-export default connect(select)(ProductMain);
+export default connect(mapStateToProps)(ProductMain);

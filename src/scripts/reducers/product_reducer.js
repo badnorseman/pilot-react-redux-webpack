@@ -18,7 +18,7 @@ export default function products(state = initialState, action) {
       return Object.assign({}, state, {
         errors: [],
         isFetching: false,
-        items: action.products
+        items: action.data
       });
 
     case PRODUCT_FETCH_REQUEST:

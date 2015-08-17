@@ -1,13 +1,7 @@
-// Todo:
-// Now then both product_actions and transaction_actions are generic,
-// we should have utils for action (dispatch) calls.
-// Input:
-// action e.g. create, load, update etc.
-// path or entityName e.g. /products or product (perhaps modelName is better)
-// Then we can rename Api to ApiCall for clarity.
-
 import { create, destroy, fetchAll, update } from "../api/api";
+import { Schema, arrayOf, normalize } from "normalizr";
 
+const productSchema = new Schema("products", { idAttribute: "id" });
 const ENTITY_NAME = "product";
 
 export const PRODUCT_CREATE_REQUEST = "PRODUCT_CREATE_REQUEST";
@@ -57,22 +51,38 @@ export const PRODUCT_FETCH_REQUEST = "PRODUCT_FETCH_REQUEST";
 export const PRODUCT_FETCH_RESPONSE = "PRODUCT_FETCH_RESPONSE";
 export const PRODUCT_FETCH_ERROR = "PRODUCT_FETCH_ERROR";
 
-export function getProducts() {
+function productFetchRequest() {
   return {
     type: PRODUCT_FETCH_REQUEST
+  };
+}
+
+function productFetchResponse(response) {
+  let normalized = normalize(response, arrayOf(productSchema));
+  return {
+    type: PRODUCT_FETCH_RESPONSE,
+    data: normalized.entities.products
+  };
+}
+
+function productFetchError(error) {
+  let errors = JSON.parse(error.responseText).errors;
+  return {
+    type: ActionTypes.PRODUCT_FETCH_ERROR,
+    errors: errors
   }
 }
-  // fetchAll(ENTITY_NAME).then(response => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_FETCH_RESPONSE,
-  //     data: response
-  //   });
-  // }).catch(error => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_FETCH_ERROR,
-  //     error: JSON.parse(error.responseText).errors
-  //   });
-  // });
+
+export function getProducts() {
+  return function (dispatch) {
+    dispatch(productFetchRequest());
+    return fetchAll(ENTITY_NAME)
+      .then(response =>
+        dispatch(productFetchResponse(response)))
+      .catch(error =>
+        dispatch(productFetchError(error)))
+  }
+}
 
 export const PRODUCT_UPDATE_REQUEST = "PRODUCT_UPDATE_REQUEST";
 

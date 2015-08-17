@@ -1,18 +1,23 @@
 "use strict";
-import React from "react";
 import "babel-core/polyfill";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
+import React from "react";
 import injectTapEventPlugin from "react-tap-event-plugin";
+import { applyMiddleware, createStore } from "redux";
+import { Provider } from "react-redux";
+import thunkMiddleware from "redux-thunk";
 import appReducer from "./reducers/app_reducer";
 import Main from "./containers/main";
 import "./app.css";
 
-let appStore = createStore(appReducer);
+injectTapEventPlugin();
 
 window.React = React;
 
-injectTapEventPlugin();
+const createStoreWithMiddleware = applyMiddleware(
+  thunkMiddleware
+)(createStore);
+
+const appStore = createStoreWithMiddleware(appReducer);
 
 React.render(
   <Provider store={appStore}>

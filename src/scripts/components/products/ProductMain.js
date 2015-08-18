@@ -3,9 +3,9 @@ import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { changeRoute } from "../../actions/route_actions";
 import { createProduct, destroyProduct, getProducts, updateProduct } from "../../actions/product_actions";
-import ProductList from "./product_list";
-import EditProduct from "./edit_product";
-import NewProduct from "./new_product";
+import ProductList from "./ProductList";
+import EditProduct from "./EditProduct";
+import NewProduct from "./NewProduct";
 
 class ProductMain extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
-import ProductForm from "./product_form";
+import ProductForm from "./ProductForm";
 import Button from "../button";
 
 export default class NewProduct extends Component {

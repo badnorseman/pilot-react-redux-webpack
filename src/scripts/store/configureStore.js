@@ -1,6 +1,6 @@
 "use strict";
 import { applyMiddleware, createStore } from "redux";
-import combinedReducers from "../reducers/combined_reducers";
+import combinedReducers from "../reducers/combinedReducers";
 import thunkMiddleware from "redux-thunk";
 
 const createStoreWithMiddleware = applyMiddleware(

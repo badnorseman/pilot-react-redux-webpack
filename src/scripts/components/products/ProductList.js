@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
-import ProductListItem from "./product_list_item";
+import ProductListItem from "./ProductListItem";
 
 export default class ProductList extends Component {
   static propTypes = {

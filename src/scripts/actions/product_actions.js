@@ -35,36 +35,48 @@ export function createProduct(data) {
   return dispatch => {
     dispatch(createProductRequest(data));
     return create(ENTITY_NAME, data)
-    .then(() =>
-      fetchAll(ENTITY_NAME))
-    .then(response =>
-      dispatch(createProductResponse(response)))
-    .catch(error =>
-      dispatch(createProductError(error)))
+    .then(() => fetchAll(ENTITY_NAME))
+    .then(response => dispatch(createProductResponse(response)))
+    .catch(error => dispatch(createProductError(error)))
   };
 }
 
 export const PRODUCT_DESTROY_REQUEST = "PRODUCT_DESTROY_REQUEST";
+export const PRODUCT_DESTROY_RESPONSE = "PRODUCT_DESTROY_RESPONSE";
+export const PRODUCT_DESTROY_ERROR = "PRODUCT_DESTROY_ERROR";
 
-export function destroyProduct(id) {
+function destroyProductRequest(id) {
   return {
     type: PRODUCT_DESTROY_REQUEST,
     id: id
-  }
+  };
 }
-  // destroy(ENTITY_NAME, id).then(() => {
-  //   return fetchAll(ENTITY_NAME);
-  // }).then(response => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_DESTROY_RESPONSE,
-  //     data: response
-  //   });
-  // }).catch(error => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_DESTROY_ERROR,
-  //     error: JSON.parse(error.responseText).errors
-  //   });
-  // });
+
+function destroyProductResponse(response) {
+  let normalized = normalize(response, arrayOf(productSchema));
+  return {
+    type: PRODUCT_DESTROY_RESPONSE,
+    data: normalized.entities.products
+  };
+}
+
+function destroyProductError(error) {
+  let errors = JSON.parse(error.responseText).errors;
+  return {
+    type: PRODUCT_DESTROY_ERROR,
+    errors: errors
+  };
+}
+
+export function destroyProduct(id) {
+  return dispatch => {
+    dispatch(destroyProductRequest(id));
+    return dispatch(destroy(ENTITY_NAME, id))
+    .then(() => fetchAll(ENTITY_NAME))
+    .then(response => dispatch(destroyProductResponse(response)))
+    .catch(error => dispatch(destroyProductError(error)))
+  };
+}
 
 export const PRODUCT_FETCH_REQUEST = "PRODUCT_FETCH_REQUEST";
 export const PRODUCT_FETCH_RESPONSE = "PRODUCT_FETCH_RESPONSE";
@@ -87,7 +99,7 @@ function productFetchResponse(response) {
 function productFetchError(error) {
   let errors = JSON.parse(error.responseText).errors;
   return {
-    type: ActionTypes.PRODUCT_FETCH_ERROR,
+    type: PRODUCT_FETCH_ERROR,
     errors: errors
   };
 }
@@ -96,30 +108,44 @@ export function getProducts() {
   return dispatch => {
     dispatch(productFetchRequest());
     return fetchAll(ENTITY_NAME)
-      .then(response =>
-        dispatch(productFetchResponse(response)))
-      .catch(error =>
-        dispatch(productFetchError(error)))
+      .then(response => dispatch(productFetchResponse(response)))
+      .catch(error => dispatch(productFetchError(error)))
   };
 }
 
 export const PRODUCT_UPDATE_REQUEST = "PRODUCT_UPDATE_REQUEST";
+export const PRODUCT_UPDATE_RESPONSE = "PRODUCT_UPDATE_RESPONSE";
+export const PRODUCT_UPDATE_ERROR = "PRODUCT_UPDATE_ERROR";
+
+function updateProductRequest(data) {
+  return {
+    type: PRODUCT_UPDATE_REQUEST,
+    data: data
+  };
+}
+
+function updateProductResponse(response) {
+  let normalized = normalize(response, arrayOf(productSchema));
+  return {
+    type: PRODUCT_UPDATE_RESPONSE,
+    data: normalized.entities.products
+  };
+}
+
+function updateProductError(error) {
+  let errors = JSON.parse(error.responseText).errors;
+  return {
+    type: PRODUCT_UPDATE_ERROR,
+    errors: errors
+  };
+}
 
 export function updateProduct(data) {
-  return {
-    type: PRODUCT_UPDATE_REQUEST
-  }
+  return dispatch => {
+    dispatch(updateProductRequest(data));
+    return update(ENTITY_NAME, data)
+      .then(() => fetchAll(ENTITY_NAME))
+      .then(response => dispatch(updateProductResponse(response)))
+      .catch(error => dispatch(updateProductError(error)))
+  };
 }
-  // update(ENTITY_NAME, data).then(() => {
-  //   return fetchAll(ENTITY_NAME);
-  // }).then(response => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_UPDATE_RESPONSE,
-  //     data: response
-  //   });
-  // }).catch(error => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_UPDATE_ERROR,
-  //     error: JSON.parse(error.responseText).errors
-  //   });
-  // });

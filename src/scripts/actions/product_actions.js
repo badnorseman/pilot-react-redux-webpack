@@ -16,7 +16,7 @@ function createProductRequest(data) {
 }
 
 function createProductResponse(response) {
-  let normalized = normalize(response, arrayOf(productSchema));
+  const normalized = normalize(response, arrayOf(productSchema));
   return {
     type: PRODUCT_CREATE_RESPONSE,
     data: normalized.entities.products
@@ -24,10 +24,10 @@ function createProductResponse(response) {
 }
 
 function createProductError(error) {
-  let errors = JSON.parse(error.responseText).errors;
+  const errors = JSON.parse(error.responseText).errors;
   return {
     type: PRODUCT_CREATE_ERROR,
-    error: JSON.parse(error.responseText).errors
+    errors: errors
   };
 }
 
@@ -53,7 +53,7 @@ function destroyProductRequest(id) {
 }
 
 function destroyProductResponse(response) {
-  let normalized = normalize(response, arrayOf(productSchema));
+  const normalized = normalize(response, arrayOf(productSchema));
   return {
     type: PRODUCT_DESTROY_RESPONSE,
     data: normalized.entities.products
@@ -61,7 +61,7 @@ function destroyProductResponse(response) {
 }
 
 function destroyProductError(error) {
-  let errors = JSON.parse(error.responseText).errors;
+  const errors = JSON.parse(error.responseText).errors;
   return {
     type: PRODUCT_DESTROY_ERROR,
     errors: errors
@@ -89,7 +89,7 @@ function productFetchRequest() {
 }
 
 function productFetchResponse(response) {
-  let normalized = normalize(response, arrayOf(productSchema));
+  const normalized = normalize(response, arrayOf(productSchema));
   return {
     type: PRODUCT_FETCH_RESPONSE,
     data: normalized.entities.products
@@ -97,7 +97,7 @@ function productFetchResponse(response) {
 }
 
 function productFetchError(error) {
-  let errors = JSON.parse(error.responseText).errors;
+  const errors = JSON.parse(error.responseText).errors;
   return {
     type: PRODUCT_FETCH_ERROR,
     errors: errors
@@ -125,7 +125,7 @@ function updateProductRequest(data) {
 }
 
 function updateProductResponse(response) {
-  let normalized = normalize(response, arrayOf(productSchema));
+  const normalized = normalize(response, arrayOf(productSchema));
   return {
     type: PRODUCT_UPDATE_RESPONSE,
     data: normalized.entities.products
@@ -133,7 +133,7 @@ function updateProductResponse(response) {
 }
 
 function updateProductError(error) {
-  let errors = JSON.parse(error.responseText).errors;
+  const errors = JSON.parse(error.responseText).errors;
   return {
     type: PRODUCT_UPDATE_ERROR,
     errors: errors

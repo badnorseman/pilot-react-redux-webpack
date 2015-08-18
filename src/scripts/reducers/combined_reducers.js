@@ -1,9 +1,9 @@
 "use strict";
 import { combineReducers } from "redux";
-import productState from "./product_reducer";
+import productReducer from "./product_reducer";
 
 const combinedReducers = combineReducers({
-  productState
+  productReducer
 });
 
 export default combinedReducers;

@@ -129,12 +129,12 @@ class ProductMain extends Component {
 }
 
 function mapStateToProps(state) {
-  const { productState } = state;
+  const { productReducer } = state;
   const {
     errors,
     isFetching,
     products
-  } = productState || {
+  } = productReducer || {
     errors: [],
     isFetching: true,
     products: {}

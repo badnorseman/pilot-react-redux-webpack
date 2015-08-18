@@ -27,7 +27,7 @@ class ProductMain extends Component {
   }
 
   componentDidUpdate() {
-    componentHandler.upgradeDom()
+    componentHandler.upgradeDom();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -63,42 +63,44 @@ class ProductMain extends Component {
   }
 
   _handleAdd(product) {
-    createProduct(product)
-    this.setState(this._initializeView())
+    const { dispatch } = this.props;
+    dispatch(createProduct(product));
+    this.setState(this._initializeView());
   }
 
   _handleClose() {
-    this.setState(this._initializeView())
+    this.setState(this._initializeView());
   }
 
   _handleEdit(product) {
-    updateProduct(product)
-    this.setState(this._initializeView())
+    const { dispatch } = this.props;
+    dispatch(updateProduct(product));
+    this.setState(this._initializeView());
   }
 
   _handleNew() {
     this.setState({
       contentSelector: "NEW"
-    })
+    });
   }
 
   _handleRemove(id) {
-    destroyProduct(id)
-    this.setState(this._initializeView())
+    destroyProduct(id);
+    this.setState(this._initializeView());
   }
 
   _handleSelect(id) {
     this.setState({
       contentSelector: "EDIT",
       id: id
-    })
+    });
   }
 
   _initializeView() {
     return {
       contentSelector: "",
       id: 0
-    }
+    };
   }
 
   render() {

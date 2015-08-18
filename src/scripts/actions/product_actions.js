@@ -5,25 +5,44 @@ const productSchema = new Schema("products", { idAttribute: "id" });
 const ENTITY_NAME = "product";
 
 export const PRODUCT_CREATE_REQUEST = "PRODUCT_CREATE_REQUEST";
+export const PRODUCT_CREATE_RESPONSE = "PRODUCT_CREATE_RESPONSE";
+export const PRODUCT_CREATE_ERROR = "PRODUCT_CREATE_ERROR";
+
+function createProductRequest(data) {
+  return {
+    type: PRODUCT_CREATE_REQUEST,
+    data: data
+  };
+}
+
+function createProductResponse(response) {
+  let normalized = normalize(response, arrayOf(productSchema));
+  return {
+    type: PRODUCT_CREATE_RESPONSE,
+    data: normalized.entities.products
+  };
+}
+
+function createProductError(error) {
+  let errors = JSON.parse(error.responseText).errors;
+  return {
+    type: PRODUCT_CREATE_ERROR,
+    error: JSON.parse(error.responseText).errors
+  };
+}
 
 export function createProduct(data) {
-  return {
-    type: PRODUCT_CREATE_REQUEST
-  }
+  return dispatch => {
+    dispatch(createProductRequest(data));
+    return create(ENTITY_NAME, data)
+    .then(() =>
+      fetchAll(ENTITY_NAME))
+    .then(response =>
+      dispatch(createProductResponse(response)))
+    .catch(error =>
+      dispatch(createProductError(error)))
+  };
 }
-  // create(ENTITY_NAME, data).then(() => {
-  //   return fetchAll(ENTITY_NAME);
-  // }).then(response => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_CREATE_RESPONSE,
-  //     data: response
-  //   });
-  // }).catch(error => {
-  //   dispatch({
-  //     type: ActionTypes.PRODUCT_CREATE_ERROR,
-  //     error: JSON.parse(error.responseText).errors
-  //   });
-  // });
 
 export const PRODUCT_DESTROY_REQUEST = "PRODUCT_DESTROY_REQUEST";
 
@@ -70,18 +89,18 @@ function productFetchError(error) {
   return {
     type: ActionTypes.PRODUCT_FETCH_ERROR,
     errors: errors
-  }
+  };
 }
 
 export function getProducts() {
-  return function (dispatch) {
+  return dispatch => {
     dispatch(productFetchRequest());
     return fetchAll(ENTITY_NAME)
       .then(response =>
         dispatch(productFetchResponse(response)))
       .catch(error =>
         dispatch(productFetchError(error)))
-  }
+  };
 }
 
 export const PRODUCT_UPDATE_REQUEST = "PRODUCT_UPDATE_REQUEST";

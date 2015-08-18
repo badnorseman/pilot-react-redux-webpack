@@ -10,7 +10,8 @@ function changeRouteRequest(data) {
   return {
     type: ROUTE_CHANGE_REQUEST,
     prevRoute: data.prevRoute,
-    nextRoute: data.nextRoute
+    nextRoute: data.nextRoute,
+    productId: data.productId
   };
 }
 

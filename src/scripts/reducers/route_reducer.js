@@ -7,7 +7,8 @@ import {
 
 const initialState = {
   prevRoute: "",
-  nextRoute: "LIST"
+  nextRoute: "LIST",
+  productId: 0
 };
 
 export default function routeReducer(state = initialState, action) {
@@ -16,7 +17,8 @@ export default function routeReducer(state = initialState, action) {
       console.log("ROUTE_CHANGE_REQUEST", action);
       return Object.assign({}, state, {
         prevRoute: action.prevRoute,
-        nextRoute: action.nextRoute
+        nextRoute: action.nextRoute,
+        productId: action.productId
       });
 
     // case ROUTE_CHANGE_RESPONSE:

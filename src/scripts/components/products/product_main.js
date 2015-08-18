@@ -10,7 +10,6 @@ import NewProduct from "./new_product";
 class ProductMain extends Component {
   constructor(props) {
     super(props);
-    this.state = { id: 0 };
     this._handleAdd = this._handleAdd.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleEdit = this._handleEdit.bind(this);
@@ -63,47 +62,45 @@ class ProductMain extends Component {
   _handleAdd(product) {
     const { dispatch } = this.props;
     dispatch(createProduct(product));
-    this.setState(this._initializeView());
+    this._initializeView();
   }
 
   _handleClose() {
-    this.setState(this._initializeView());
+    this._initializeView();
   }
 
   _handleEdit(product) {
     const { dispatch } = this.props;
     dispatch(updateProduct(product));
-    this.setState(this._initializeView());
+    this._initializeView();
   }
 
   _handleNew() {
     const { dispatch } = this.props;
-    this.setState({ contentSelector: "NEW" });
     dispatch(changeRoute({ nextRoute: "NEW" }));
   }
 
   _handleRemove(id) {
     const { dispatch } = this.props;
     dispatch(destroyProduct(id));
-    this.setState(this._initializeView());
+    this._initializeView();
   }
 
   _handleSelect(id) {
     const { dispatch } = this.props;
-    this.setState({ id: id });
-    dispatch(changeRoute({ nextRoute: "EDIT" }));
+    dispatch(changeRoute({ nextRoute: "EDIT", productId: id }));
   }
 
   _initializeView() {
     const { dispatch } = this.props;
-    dispatch(changeRoute({prevRoute: "", nextRoute: "LIST"}));
-    return { id: 0 };
+    dispatch(changeRoute({
+      prevRoute: "", nextRoute: "LIST", productId: 0
+    }));
   }
 
   render() {
-    const { isFetching, errors, nextRoute, products } = this.props;
-    const { contentSelector, id } = this.state;
-    const product = this.props.products[id];
+    const { isFetching, errors, nextRoute, products, productId } = this.props;
+    const product = this.props.products[productId];
     let content;
 
     switch (nextRoute) {
@@ -132,11 +129,11 @@ function mapStateToProps(state) {
     errors: [], isFetching: true, products: {}
   };
   const {
-    prevRoute, nextRoute } = routeReducer || {
-    prevRoute: "", nextRoute: "LIST"
+    prevRoute, nextRoute, productId } = routeReducer || {
+    prevRoute: "", nextRoute: "LIST", productId: 0
   };
   return {
-    errors, isFetching, nextRoute, prevRoute, products
+    errors, isFetching, nextRoute, prevRoute, products, productId
   };
 }
 

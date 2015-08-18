@@ -1,12 +1,11 @@
 "use strict";
 import {
-  PRODUCT_FETCH_ERROR,
+  PRODUCT_FETCH_REQUEST,
   PRODUCT_FETCH_RESPONSE,
-  PRODUCT_FETCH_REQUEST
-  PRODUCT_UPDATE_ERROR,
+  PRODUCT_FETCH_ERROR,
+  PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_RESPONSE,
-  PRODUCT_UPDATE_REQUEST
-
+  PRODUCT_UPDATE_ERROR
 } from "../actions/product_actions";
 
 const initialState = {
@@ -17,11 +16,10 @@ const initialState = {
 
 export default function productState(state = initialState, action) {
   switch (action.type) {
-    case PRODUCT_FETCH_ERROR:
-    case PRODUCT_UPDATE_ERROR:
+    case PRODUCT_FETCH_REQUEST:
+    case PRODUCT_UPDATE_REQUEST:
       return Object.assign({}, state, {
-        errors: action.errors,
-        isFetching: false
+        isFetching: true
       });
 
     case PRODUCT_FETCH_RESPONSE:
@@ -32,10 +30,11 @@ export default function productState(state = initialState, action) {
         products: action.data
       });
 
-    case PRODUCT_FETCH_REQUEST:
-    case PRODUCT_UPDATE_REQUEST:
+    case PRODUCT_FETCH_ERROR:
+    case PRODUCT_UPDATE_ERROR:
       return Object.assign({}, state, {
-        isFetching: true
+        errors: action.errors,
+        isFetching: false
       });
 
     default:

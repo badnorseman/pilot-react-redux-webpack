@@ -85,7 +85,8 @@ class ProductMain extends Component {
   }
 
   _handleRemove(id) {
-    destroyProduct(id);
+    const { dispatch } = this.props;
+    dispatch(destroyProduct(id));
     this.setState(this._initializeView());
   }
 

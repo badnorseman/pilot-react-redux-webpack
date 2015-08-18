@@ -10,7 +10,7 @@ import NewProduct from "./new_product";
 class ProductMain extends Component {
   constructor(props) {
     super(props);
-    this.state = { contentSelector: "", id: 0 };
+    this.state = { id: 0 };
     this._handleAdd = this._handleAdd.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleEdit = this._handleEdit.bind(this);
@@ -90,14 +90,14 @@ class ProductMain extends Component {
 
   _handleSelect(id) {
     const { dispatch } = this.props;
-    this.setState({ contentSelector: "EDIT", id: id });
+    this.setState({ id: id });
     dispatch(changeRoute({ nextRoute: "EDIT" }));
   }
 
   _initializeView() {
     const { dispatch } = this.props;
     dispatch(changeRoute({prevRoute: "", nextRoute: "LIST"}));
-    return { contentSelector: "", id: 0 };
+    return { id: 0 };
   }
 
   render() {
@@ -105,9 +105,8 @@ class ProductMain extends Component {
     const { contentSelector, id } = this.state;
     const product = this.props.products[id];
     let content;
-    console.log("render", nextRoute, this.state.contentSelector);
 
-    switch (contentSelector) {
+    switch (nextRoute) {
       case "EDIT":
         content = this._getEditProduct(errors, product);
         break;

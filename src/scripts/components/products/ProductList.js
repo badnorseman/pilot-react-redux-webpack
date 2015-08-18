@@ -17,11 +17,13 @@ export default class ProductList extends Component {
 
   _getItems() {
     let items = [];
-    Object.keys(this.props.products).forEach(key => {
-      items.push(
-        <ProductListItem key={key} item={this.props.products[key]} onClick={this._handleSelect}/>
-      );
-    })
+    for (let key in this.props.products) {
+      if (this.props.products.hasOwnProperty(key)) {
+        items.push(
+          <ProductListItem key={key} item={this.props.products[key]} onClick={this._handleSelect}/>
+        );
+      }
+    }
     return items;
   }
 

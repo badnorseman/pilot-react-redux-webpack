@@ -9,9 +9,8 @@ export function changeRoute(data) {
 function changeRouteRequest(data) {
   return {
     type: ROUTE_CHANGE_REQUEST,
-    prevRoute: data.prevRoute,
-    nextRoute: data.nextRoute,
-    productId: data.productId
+    route: data.route,
+    id: data.id
   };
 }
 

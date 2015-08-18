@@ -62,48 +62,44 @@ class ProductMain extends Component {
   _handleAdd(product) {
     const { dispatch } = this.props;
     dispatch(createProduct(product));
-    this._initializeView();
+    this._changeRoute();
   }
 
   _handleClose() {
-    this._initializeView();
+    this._changeRoute();
   }
 
   _handleEdit(product) {
     const { dispatch } = this.props;
     dispatch(updateProduct(product));
-    this._initializeView();
+    this._changeRoute();
   }
 
   _handleNew() {
-    const { dispatch } = this.props;
-    dispatch(changeRoute({ nextRoute: "NEW" }));
+    this._changeRoute("NEW");
   }
 
   _handleRemove(id) {
     const { dispatch } = this.props;
     dispatch(destroyProduct(id));
-    this._initializeView();
+    this._changeRoute();
   }
 
   _handleSelect(id) {
-    const { dispatch } = this.props;
-    dispatch(changeRoute({ nextRoute: "EDIT", productId: id }));
+    this._changeRoute("EDIT", id);
   }
 
-  _initializeView() {
+  _changeRoute(route = "LIST", id = 0) {
     const { dispatch } = this.props;
-    dispatch(changeRoute({
-      prevRoute: "", nextRoute: "LIST", productId: 0
-    }));
+    dispatch(changeRoute({ route: route, id: id }));
   }
 
   render() {
-    const { isFetching, errors, nextRoute, products, productId } = this.props;
-    const product = this.props.products[productId];
+    const { isFetching, errors, route, products, id } = this.props;
+    const product = this.props.products[id];
     let content;
 
-    switch (nextRoute) {
+    switch (route) {
       case "EDIT":
         content = this._getEditProduct(errors, product);
         break;
@@ -124,17 +120,11 @@ class ProductMain extends Component {
 function mapStateToProps(state) {
   const { productReducer, routeReducer } = state;
   const {
-    errors, isFetching, products
-  } = productReducer || {
+    errors, isFetching, products } = productReducer || {
     errors: [], isFetching: true, products: {}
   };
-  const {
-    prevRoute, nextRoute, productId } = routeReducer || {
-    prevRoute: "", nextRoute: "LIST", productId: 0
-  };
-  return {
-    errors, isFetching, nextRoute, prevRoute, products, productId
-  };
+  const { route, id } = routeReducer || { route: "LIST", id: 0 };
+  return { errors, isFetching, products, route, id };
 }
 
 export default connect(mapStateToProps)(ProductMain);

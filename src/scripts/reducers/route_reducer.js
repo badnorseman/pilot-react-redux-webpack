@@ -6,18 +6,16 @@ import {
 } from "../actions/route_actions";
 
 const initialState = {
-  prevRoute: "",
-  nextRoute: "LIST",
-  productId: 0
+  route: "LIST",
+  id: 0
 };
 
 export default function routeReducer(state = initialState, action) {
   switch (action.type) {
     case ROUTE_CHANGE_REQUEST:
       return Object.assign({}, state, {
-        prevRoute: action.prevRoute,
-        nextRoute: action.nextRoute,
-        productId: action.productId
+        route: action.route,
+        id: action.id
       });
 
     // case ROUTE_CHANGE_RESPONSE:

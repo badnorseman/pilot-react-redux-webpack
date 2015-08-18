@@ -71,7 +71,7 @@ function destroyProductError(error) {
 export function destroyProduct(id) {
   return dispatch => {
     dispatch(destroyProductRequest(id));
-    return dispatch(destroy(ENTITY_NAME, id))
+    return destroy(ENTITY_NAME, id)
     .then(() => fetchAll(ENTITY_NAME))
     .then(response => dispatch(destroyProductResponse(response)))
     .catch(error => dispatch(destroyProductError(error)))

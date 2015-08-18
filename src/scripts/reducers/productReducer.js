@@ -12,7 +12,7 @@ import {
   PRODUCT_UPDATE_REQUEST,
   PRODUCT_UPDATE_RESPONSE,
   PRODUCT_UPDATE_ERROR
-} from "../actions/product_actions";
+} from "../actions/ProductActions";
 
 const initialState = {
   isFetching: false,

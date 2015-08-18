@@ -1,5 +1,4 @@
 "use strict";
-
 export function convertObjtoArray(obj) {
   let array = [];
   for (let key in obj) {

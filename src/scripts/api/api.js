@@ -1,28 +1,28 @@
 "use strict";
 import $ from "jquery";
-import { getFormData, getHeaders, getUrl } from "../utils/api_utils";
+import { getFormData, getHeaders, getUrl } from "../utils/ApiUtils";
 
-export function create(objName, data) {
+export function create(entityName, data) {
   return (
     Promise.resolve(
       $.ajax({
-        url: getUrl(objName),
+        url: getUrl(entityName),
         dataType: "json",
         type: "POST",
         headers: getHeaders(),
         processData: false,
         contentType: false,
-        data: getFormData(objName, data)
+        data: getFormData(entityName, data)
       })
     )
   )
 }
 
-export function destroy(objName, id) {
+export function destroy(entityName, id) {
   return (
     Promise.resolve(
       $.ajax({
-        url: getUrl(objName, id),
+        url: getUrl(entityName, id),
         dataType: "json",
         type: "DELETE",
         headers: getHeaders()
@@ -31,11 +31,11 @@ export function destroy(objName, id) {
   )
 }
 
-export function fetchClientToken(objName) {
+export function fetchClientToken(entityName) {
   return (
     Promise.resolve(
       $.ajax({
-        url: getUrl(objName, "new"),
+        url: getUrl(entityName, "new"),
         dataType: "json",
         type: "GET",
         headers: getHeaders()
@@ -44,11 +44,11 @@ export function fetchClientToken(objName) {
   )
 }
 
-export function fetchAll(objName) {
+export function fetchAll(entityName) {
   return (
     Promise.resolve(
       $.ajax({
-        url: getUrl(objName),
+        url: getUrl(entityName),
         dataType: "json",
         type: "GET",
         headers: getHeaders()
@@ -57,17 +57,17 @@ export function fetchAll(objName) {
   )
 }
 
-export function update(objName, data) {
+export function update(entityName, data) {
   return (
     Promise.resolve(
       $.ajax({
-        url: getUrl(objName, data.id),
+        url: getUrl(entityName, data.id),
         dataType: "json",
         type: "PATCH",
         headers: getHeaders(),
         processData: false,
         contentType: false,
-        data: getFormData(objName, data)
+        data: getFormData(entityName, data)
       })
     )
   )

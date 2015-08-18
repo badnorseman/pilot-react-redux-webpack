@@ -3,7 +3,7 @@ import {
   ROUTE_CHANGE_REQUEST,
   ROUTE_CHANGE_RESPONSE,
   ROUTE_CHANGE_ERROR
-} from "../actions/route_actions";
+} from "../actions/RouteActions";
 
 const initialState = {
   route: "LIST",

@@ -1,8 +1,8 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
-import Button from "../button";
-import InputField from "../input_field";
-import InputFile from "../input_file";
+import Button from "../Button";
+import InputField from "../InputField";
+import InputFile from "../InputFile";
 
 export default class ProductForm extends Component {
   static propTypes = {

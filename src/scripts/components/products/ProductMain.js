@@ -1,8 +1,8 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
-import { changeRoute } from "../../actions/route_actions";
-import { createProduct, destroyProduct, getProducts, updateProduct } from "../../actions/product_actions";
+import { changeRoute } from "../../actions/RouteActions";
+import { createProduct, destroyProduct, getProducts, updateProduct } from "../../actions/ProductActions";
 import ProductList from "./ProductList";
 import EditProduct from "./EditProduct";
 import NewProduct from "./NewProduct";

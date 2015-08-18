@@ -3,13 +3,13 @@ var webpack = require("webpack");
 
 module.exports = {
   entry: [
-    "./spec/sum_spec",
-    "./spec/fetch_all_products_spec"
+    "./spec/sumSpec",
+    "./spec/fetchAllProductsSpec"
   ],
   output: {
     path: path.join(__dirname, "spec"),
     publicPath: "/spec/",
-    filename: "bundle_spec.js"
+    filename: "spec.js"
   },
   resolve: {
     extensions: ["", ".js"]

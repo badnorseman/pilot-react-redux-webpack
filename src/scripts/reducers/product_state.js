@@ -3,10 +3,10 @@ import { PRODUCT_FETCH_ERROR, PRODUCT_FETCH_RESPONSE, PRODUCT_FETCH_REQUEST } fr
 const initialState = {
   isFetching: false,
   errors: [],
-  items: {}
+  products: {}
 }
 
-export default function products(state = initialState, action) {
+export default function productState(state = initialState, action) {
   switch (action.type) {
     case PRODUCT_FETCH_ERROR:
       return Object.assign({}, state, {
@@ -18,7 +18,7 @@ export default function products(state = initialState, action) {
       return Object.assign({}, state, {
         errors: [],
         isFetching: false,
-        items: action.data
+        products: action.data
       });
 
     case PRODUCT_FETCH_REQUEST:

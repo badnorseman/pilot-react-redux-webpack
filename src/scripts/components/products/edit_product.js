@@ -6,7 +6,6 @@ import Button from "../button";
 export default class EditProduct extends Component {
   static propTypes = {
     product: PropTypes.object.isRequired,
-    onBuy: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
     onEdit: PropTypes.func.isRequired,
     onRemove: PropTypes.func.isRequired
@@ -14,26 +13,21 @@ export default class EditProduct extends Component {
 
   constructor(props) {
     super(props);
-    this._handleBuy = this._handleBuy.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleEdit = this._handleEdit.bind(this);
     this._handleRemove = this._handleRemove.bind(this);
   }
 
-  _handleBuy() {
-    this.props.onBuy(this.props.product.id)
-  }
-
   _handleClose() {
-    this.props.onClose()
+    this.props.onClose();
   }
 
   _handleEdit(product) {
-    this.props.onEdit(product)
+    this.props.onEdit(product);
   }
 
   _handleRemove() {
-    this.props.onRemove(this.props.product.id)
+    this.props.onRemove(this.props.product.id);
   }
 
   render() {
@@ -50,8 +44,6 @@ export default class EditProduct extends Component {
             price={this.props.product.price}
             onClose={this._handleClose}
             onSubmit={this._handleEdit}/>
-          <div className="divider"></div>
-          <Button name="Buy" onClick={this._handleBuy}/>
           <div className="divider"></div>
           <Button name="Remove" onClick={this._handleRemove}/>
         </div>

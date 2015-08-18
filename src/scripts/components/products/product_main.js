@@ -22,12 +22,15 @@ class ProductMain extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, products } = this.props;
+    const { dispatch } = this.props;
     dispatch(getProducts());
   }
 
+  componentDidUpdate() {
+    componentHandler.upgradeDom()
+  }
+
   componentWillReceiveProps(nextProps) {
-    console.log("componentWillReceiveProps", this.props, this.state, nextProps);
   }
 
   _getEditProduct(errors = [], product = {}) {
@@ -35,7 +38,6 @@ class ProductMain extends Component {
       <EditProduct
         errors={errors}
         product={product}
-        onBuy={this._handleBuy}
         onClose={this._handleClose}
         onEdit={this._handleEdit}
         onRemove={this._handleRemove}/>
@@ -100,18 +102,20 @@ class ProductMain extends Component {
   }
 
   render() {
-    const { isFetching, items } = this.props;
+    const { isFetching, errors, products } = this.props;
+    const { contentSelector, id } = this.state;
+    const product = this.props.products[id];
     let content;
 
-    switch (this.state.contentSelector) {
+    switch (contentSelector) {
       case "EDIT":
-        content = this._getEditProduct();
+        content = this._getEditProduct(errors, product);
         break;
       case "NEW":
         content = this._getNewProduct();
         break;
       default:
-        content = this._getProductList(items);
+        content = this._getProductList(products);
     }
     return (
       <div>
@@ -122,17 +126,20 @@ class ProductMain extends Component {
 }
 
 function mapStateToProps(state) {
-  const { products } = state;
+  const { productState } = state;
   const {
+    errors,
     isFetching,
-    items
-  } = products || {
+    products
+  } = productState || {
+    errors: [],
     isFetching: true,
-    items: {}
+    products: {}
   };
   return {
+    errors,
     isFetching,
-    items
+    products
   };
 }
 

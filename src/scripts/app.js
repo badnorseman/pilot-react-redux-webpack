@@ -5,7 +5,7 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import thunkMiddleware from "redux-thunk";
-import appReducer from "./reducers/app_reducer";
+import appState from "./reducers/app_state";
 import Main from "./containers/main";
 import "./app.css";
 
@@ -17,7 +17,7 @@ const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware
 )(createStore);
 
-const appStore = createStoreWithMiddleware(appReducer);
+const appStore = createStoreWithMiddleware(appState);
 
 React.render(
   <Provider store={appStore}>

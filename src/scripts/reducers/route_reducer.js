@@ -13,9 +13,10 @@ const initialState = {
 export default function routeReducer(state = initialState, action) {
   switch (action.type) {
     case ROUTE_CHANGE_REQUEST:
+      console.log("ROUTE_CHANGE_REQUEST", action);
       return Object.assign({}, state, {
-        previous: action.data.previous,
-        next: action.data.next
+        previous: action.previous,
+        next: action.next
       });
 
     // case ROUTE_CHANGE_RESPONSE:

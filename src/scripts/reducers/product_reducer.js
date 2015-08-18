@@ -26,6 +26,7 @@ export default function productReducer(state = initialState, action) {
     case PRODUCT_DESTROY_REQUEST:
     case PRODUCT_FETCH_REQUEST:
     case PRODUCT_UPDATE_REQUEST:
+      console.log("PRODUCT_UPDATE_REQUEST", action);
       return Object.assign({}, state, {
         isFetching: true
       });

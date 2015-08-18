@@ -1,7 +1,8 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
-import { createProduct, destroyProduct, getProducts, updateProduct } from "../../actions/product_actions";
 import { connect } from "react-redux";
+import { changeRoute } from "../../actions/route_actions";
+import { createProduct, destroyProduct, getProducts, updateProduct } from "../../actions/product_actions";
 import ProductList from "./product_list";
 import EditProduct from "./edit_product";
 import NewProduct from "./new_product";
@@ -75,6 +76,7 @@ class ProductMain extends Component {
   _handleEdit(product) {
     const { dispatch } = this.props;
     dispatch(updateProduct(product));
+    dispatch(changeRoute({previous: "EDIT", next: ""}));
     this.setState(this._initializeView());
   }
 

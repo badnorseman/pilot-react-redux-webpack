@@ -14,3 +14,6 @@
 /tmp
 *.log
 /log
+
+# Ignore build spec
+/spec/spec.js

@@ -9,8 +9,8 @@ export function changeRoute(data) {
 function changeRouteRequest(data) {
   return {
     type: ROUTE_CHANGE_REQUEST,
-    previous: data.previous,
-    next: data.next
+    prevRoute: data.prevRoute,
+    nextRoute: data.nextRoute
   };
 }
 

@@ -10,10 +10,7 @@ import NewProduct from "./new_product";
 class ProductMain extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      contentSelector: "",
-      id: 0
-    };
+    this.state = { contentSelector: "", id: 0 };
     this._handleAdd = this._handleAdd.bind(this);
     this._handleClose = this._handleClose.bind(this);
     this._handleEdit = this._handleEdit.bind(this);
@@ -76,14 +73,13 @@ class ProductMain extends Component {
   _handleEdit(product) {
     const { dispatch } = this.props;
     dispatch(updateProduct(product));
-    dispatch(changeRoute({previous: "EDIT", next: ""}));
     this.setState(this._initializeView());
   }
 
   _handleNew() {
-    this.setState({
-      contentSelector: "NEW"
-    });
+    const { dispatch } = this.props;
+    this.setState({ contentSelector: "NEW" });
+    dispatch(changeRoute({ nextRoute: "NEW" }));
   }
 
   _handleRemove(id) {
@@ -93,24 +89,23 @@ class ProductMain extends Component {
   }
 
   _handleSelect(id) {
-    this.setState({
-      contentSelector: "EDIT",
-      id: id
-    });
+    const { dispatch } = this.props;
+    this.setState({ contentSelector: "EDIT", id: id });
+    dispatch(changeRoute({ nextRoute: "EDIT" }));
   }
 
   _initializeView() {
-    return {
-      contentSelector: "",
-      id: 0
-    };
+    const { dispatch } = this.props;
+    dispatch(changeRoute({prevRoute: "", nextRoute: "LIST"}));
+    return { contentSelector: "", id: 0 };
   }
 
   render() {
-    const { isFetching, errors, products } = this.props;
+    const { isFetching, errors, nextRoute, products } = this.props;
     const { contentSelector, id } = this.state;
     const product = this.props.products[id];
     let content;
+    console.log("render", nextRoute, this.state.contentSelector);
 
     switch (contentSelector) {
       case "EDIT":
@@ -131,20 +126,18 @@ class ProductMain extends Component {
 }
 
 function mapStateToProps(state) {
-  const { productReducer } = state;
+  const { productReducer, routeReducer } = state;
   const {
-    errors,
-    isFetching,
-    products
+    errors, isFetching, products
   } = productReducer || {
-    errors: [],
-    isFetching: true,
-    products: {}
+    errors: [], isFetching: true, products: {}
+  };
+  const {
+    prevRoute, nextRoute } = routeReducer || {
+    prevRoute: "", nextRoute: "LIST"
   };
   return {
-    errors,
-    isFetching,
-    products
+    errors, isFetching, nextRoute, prevRoute, products
   };
 }
 

@@ -1,9 +1,7 @@
 "use strict";
 import {
-  ROUTE_CHANGE_REQUEST,
-  ROUTE_CHANGE_RESPONSE,
-  ROUTE_CHANGE_ERROR
-} from "../actions/RouteActions";
+  ROUTE_CHANGE_REQUEST
+} from "../actions/routeActions";
 
 const initialState = {
   route: "LIST",
@@ -17,15 +15,6 @@ export default function routeReducer(state = initialState, action) {
         route: action.route,
         id: action.id
       });
-
-    // case ROUTE_CHANGE_RESPONSE:
-    //   return Object.assign({}, state, {
-    //   });
-
-    // case ROUTE_CHANGE_ERROR:
-    //   return Object.assign({}, state, {
-    //     errors: action.errors
-    //   });
 
     default:
       return state;

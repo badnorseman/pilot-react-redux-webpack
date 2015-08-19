@@ -1,6 +1,6 @@
 "use strict";
 import $ from "jquery";
-import { getFormData, getHeaders, getUrl } from "../utils/ApiUtils";
+import { getFormData, getHeaders, getUrl } from "../utils/apiUtils";
 
 export function create(entityName, data) {
   return (

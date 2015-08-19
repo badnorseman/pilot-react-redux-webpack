@@ -9,7 +9,6 @@ export const PRODUCT_CREATE_RESPONSE = "PRODUCT_CREATE_RESPONSE";
 export const PRODUCT_CREATE_ERROR = "PRODUCT_CREATE_ERROR";
 
 function createProductRequest(data) {
-  console.log("createProductRequest", data);
   return {
     type: PRODUCT_CREATE_REQUEST,
     data: data
@@ -17,7 +16,6 @@ function createProductRequest(data) {
 }
 
 function createProductResponse(response) {
-  console.log("createProductResponse", response);
   const normalized = normalize(response, arrayOf(productSchema));
   return {
     type: PRODUCT_CREATE_RESPONSE,
@@ -26,7 +24,6 @@ function createProductResponse(response) {
 }
 
 function createProductError(error) {
-  console.log("createProductError", error);
   const errors = JSON.parse(error.responseText).errors;
   return {
     type: PRODUCT_CREATE_ERROR,
@@ -121,7 +118,6 @@ export const PRODUCT_UPDATE_RESPONSE = "PRODUCT_UPDATE_RESPONSE";
 export const PRODUCT_UPDATE_ERROR = "PRODUCT_UPDATE_ERROR";
 
 function updateProductRequest(data) {
-  console.log("updateProductRequest", data);
   return {
     type: PRODUCT_UPDATE_REQUEST,
     data: data
@@ -129,7 +125,6 @@ function updateProductRequest(data) {
 }
 
 function updateProductResponse(response) {
-  console.log("updateProductResponse", response);
   const normalized = normalize(response, arrayOf(productSchema));
   return {
     type: PRODUCT_UPDATE_RESPONSE,
@@ -138,7 +133,6 @@ function updateProductResponse(response) {
 }
 
 function updateProductError(error) {
-  console.log("updateProductError", error);
   const errors = JSON.parse(error.responseText).errors;
   return {
     type: PRODUCT_UPDATE_ERROR,

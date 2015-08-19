@@ -62,7 +62,6 @@ class ProductMain extends Component {
   _handleAdd(product) {
     const { dispatch } = this.props;
     dispatch(createProduct(product));
-    this._changeRoute();
   }
 
   _handleClose() {

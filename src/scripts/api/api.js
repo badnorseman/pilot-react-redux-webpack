@@ -15,7 +15,7 @@ export function create(entityName, data) {
         data: getFormData(entityName, data)
       })
     )
-  )
+  );
 }
 
 export function destroy(entityName, id) {
@@ -28,7 +28,7 @@ export function destroy(entityName, id) {
         headers: getHeaders()
       })
     )
-  )
+  );
 }
 
 export function fetchClientToken(entityName) {
@@ -41,7 +41,7 @@ export function fetchClientToken(entityName) {
         headers: getHeaders()
       })
     )
-  )
+  );
 }
 
 export function fetchAll(entityName) {
@@ -54,7 +54,7 @@ export function fetchAll(entityName) {
         headers: getHeaders()
       })
     )
-  )
+  );
 }
 
 export function update(entityName, data) {
@@ -70,5 +70,5 @@ export function update(entityName, data) {
         data: getFormData(entityName, data)
       })
     )
-  )
+  );
 }

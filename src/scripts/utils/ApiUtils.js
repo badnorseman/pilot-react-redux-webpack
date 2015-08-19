@@ -15,7 +15,7 @@ export function getFormData(entityName, data) {
 export function getHeaders() {
   return {
     "Authorization": `Token token=${localStorage.token}`
-  }
+  };
 }
 
 export function getUrl(entityName, params) {

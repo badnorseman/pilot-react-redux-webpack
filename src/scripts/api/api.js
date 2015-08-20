@@ -3,18 +3,15 @@ import $ from "jquery";
 import { getFormData, getHeaders, getUrl } from "../utils/apiUtils";
 
 export function create(entityName, data) {
-  const url = getUrl(entityName);
-  const headers = getHeaders();
-  const formData = getFormData(entityName, data);
   return Promise.resolve(
     $.ajax({
-      url: url,
+      url: getUrl(entityName),
       dataType: "json",
       type: "POST",
-      headers: headers,
+      headers: getHeaders(),
       processData: false,
       contentType: false,
-      data: formData
+      data: getFormData(entityName, data)
     })
   );
 }

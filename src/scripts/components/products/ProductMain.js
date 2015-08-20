@@ -96,7 +96,7 @@ class ProductMain extends Component {
         content = this._getEditProduct(errors, product);
         break;
       case "NEW":
-        content = this._getNewProduct();
+        content = this._getNewProduct(errors);
         break;
       default:
         content = this._getProductList(products);

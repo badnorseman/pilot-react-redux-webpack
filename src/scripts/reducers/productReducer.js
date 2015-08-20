@@ -26,7 +26,6 @@ export default function productReducer(state = initialState, action) {
     case PRODUCT_DESTROY_REQUEST:
     case PRODUCT_FETCH_REQUEST:
     case PRODUCT_UPDATE_REQUEST:
-      console.log("PRODUCT_REQUEST", action);
       return Object.assign({}, state, {
         isFetching: true
       });
@@ -35,7 +34,6 @@ export default function productReducer(state = initialState, action) {
     case PRODUCT_DESTROY_RESPONSE:
     case PRODUCT_FETCH_RESPONSE:
     case PRODUCT_UPDATE_RESPONSE:
-      console.log("PRODUCT_RESPONSE", action);
       return Object.assign({}, state, {
         errors: [],
         isFetching: false,
@@ -46,7 +44,6 @@ export default function productReducer(state = initialState, action) {
     case PRODUCT_FETCH_ERROR:
     case PRODUCT_DESTROY_ERROR:
     case PRODUCT_UPDATE_ERROR:
-      console.log("PRODUCT_ERROR", action);
       return Object.assign({}, state, {
         errors: action.errors,
         isFetching: false

@@ -38,8 +38,6 @@ export default class ProductForm extends Component {
   }
 
   _handleSubmit(e) {
-    // You have to prevent default behavior of submitting form in ordinary POST
-    // request. We'd like to handle it ourselves with xhr
     e.preventDefault();
 
     let currency = this._getCurrency();

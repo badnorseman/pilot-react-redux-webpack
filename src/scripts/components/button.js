@@ -1,8 +1,6 @@
 "use strict";
+import $ from "jquery";
 import React, { Component, PropTypes } from "react";
-
-function noop () {
-}
 
 export default class Button extends Component {
   static propTypes = {
@@ -11,7 +9,7 @@ export default class Button extends Component {
   }
 
   static defaultProps = {
-    onClick: noop
+    onClick: $.noop
   }
 
   constructor(props) {

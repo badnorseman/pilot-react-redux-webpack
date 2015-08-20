@@ -1,7 +1,6 @@
 export const ROUTE_CHANGE_REQUEST = "ROUTE_CHANGE_REQUEST";
 
 function changeRouteRequest(route, id) {
-  // const { route, id } = data;
   return {
     type: ROUTE_CHANGE_REQUEST,
     route: route,

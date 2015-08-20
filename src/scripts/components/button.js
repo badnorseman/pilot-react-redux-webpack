@@ -1,10 +1,17 @@
 "use strict";
 import React, { Component, PropTypes } from "react";
 
+function noop () {
+}
+
 export default class Button extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    onClick: noop
   }
 
   constructor(props) {

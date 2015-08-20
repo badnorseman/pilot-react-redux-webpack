@@ -34,7 +34,7 @@
     "node": ">= 0.10"
   },
   "scripts": {
-    "start": "webpack-dev-server --content-base dist/",
+    "start": "webpack-dev-server --content-base src/",
     "test": "./node_modules/jasmine/bin/jasmine.js",
     "pretest": "webpack --config webpack_spec.config.js"
   }

@@ -37,7 +37,11 @@ export default class ProductForm extends Component {
     this.props.onClose()
   }
 
-  _handleSubmit() {
+  _handleSubmit(e) {
+    // You have to prevent default behavior of submitting form in ordinary POST
+    // request. We'd like to handle it ourselves with xhr
+    e.preventDefault();
+
     let currency = this._getCurrency();
     let description = this.refs.description.state.fieldValue;
     let id = this.props.id;
@@ -64,7 +68,7 @@ export default class ProductForm extends Component {
   render() {
     return (
       <div>
-        <form>
+        <form onSubmit={this._handleSubmit}>
           <div>
             <InputField
               fieldName="name"
@@ -117,9 +121,9 @@ export default class ProductForm extends Component {
           <InputFile
             ref="image"/>
           <div>
-            <Button name="Close" onClick={this._handleClose}/>
+            <Button name="Close" type="button" onClick={this._handleClose}/>
             <div className="divider"></div>
-            <Button name="Save" onClick={this._handleSubmit}/>
+            <Button name="Save" type="submit"/>
           </div>
         </form>
       </div>

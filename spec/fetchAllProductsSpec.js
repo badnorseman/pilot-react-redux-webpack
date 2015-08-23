@@ -1,6 +1,14 @@
 "use strict";
 
 describe("fetchAllProducts", () => {
+  beforeEach(function() {
+    jasmine.Ajax.install();
+  });
+
+  afterEach(function() {
+    jasmine.Ajax.uninstall();
+  });
+  
   describe("on success", () => {
     it("should return status 200", () => {
       let fetchAllProducts = require("./fetchAllProducts");

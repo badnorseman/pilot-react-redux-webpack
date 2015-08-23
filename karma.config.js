@@ -6,6 +6,7 @@ module.exports = function (config) {
       "Chrome"
     ],
     frameworks: [
+      "jasmine-ajax",
       "jasmine"
     ],
     files: [

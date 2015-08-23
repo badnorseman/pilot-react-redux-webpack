@@ -8,7 +8,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
-      include: path.join(__dirname, "/spec"),
+      include: [path.join(__dirname, "/spec"), path.join(__dirname, "/src")],
       loader: "babel"
     }]
   }

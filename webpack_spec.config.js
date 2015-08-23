@@ -18,7 +18,7 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       include: path.join(__dirname, "/spec"),
-      loader: "babel?stage=0"
+      loader: "babel"
     }]
   }
 };

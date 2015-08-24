@@ -43,9 +43,9 @@ export default class EditProduct extends Component {
             name={this.props.product.name}
             price={this.props.product.price}
             onClose={this._handleClose}
-            onSubmit={this._handleEdit}/>
+            onSubmit={this._handleEdit} />
           <div className="divider"></div>
-          <Button name="Remove" onClick={this._handleRemove}/>
+          <Button name="Remove" onClick={this._handleRemove} />
         </div>
       </div>
     )

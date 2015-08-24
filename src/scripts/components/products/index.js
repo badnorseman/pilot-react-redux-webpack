@@ -40,7 +40,7 @@ class ProductMain extends Component {
         product={product}
         onClose={this._handleClose}
         onEdit={this._handleEdit}
-        onRemove={this._handleRemove}/>
+        onRemove={this._handleRemove} />
     );
   }
 
@@ -49,7 +49,7 @@ class ProductMain extends Component {
       <NewProduct
         errors={errors}
         onAdd={this._handleAdd}
-        onClose={this._handleClose}/>
+        onClose={this._handleClose} />
     );
   }
 
@@ -58,7 +58,7 @@ class ProductMain extends Component {
       <ProductList
         products={products}
         onNew={this._handleNew}
-        onSelect={this._handleSelect}/>
+        onSelect={this._handleSelect} />
     );
   }
 

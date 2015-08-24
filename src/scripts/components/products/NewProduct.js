@@ -41,7 +41,7 @@ export default class NewProduct extends Component {
             name={this.props.name}
             price={this.props.price}
             onClose={this._handleClose}
-            onSubmit={this._handleAdd}/>
+            onSubmit={this._handleAdd} />
         </div>
       </div>
     )

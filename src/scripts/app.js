@@ -15,7 +15,7 @@ window.React = React;
 
 React.render(
   <Provider store={store}>
-    {() => <Main/>}
+    {() => <Main />}
   </Provider>,
   document.getElementById("app")
 );

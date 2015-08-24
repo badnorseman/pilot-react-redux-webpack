@@ -33,7 +33,7 @@ export default class InputField extends Component {
           type={this.props.fieldType}
           value={this.state.fieldValue}
           ref={this.props.fieldName}
-          onChange={this._handleChange}/>
+          onChange={this._handleChange} />
         <label
           className="mdl-textfield__label"
           htmlFor={this.props.fieldName}>

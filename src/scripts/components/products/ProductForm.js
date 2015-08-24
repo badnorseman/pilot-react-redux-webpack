@@ -99,29 +99,29 @@ export default class ProductForm extends Component {
           </div>
           <div>
             <label className="mdl-radio mdl-js-radio mdl-js-ripple-effect" htmlFor="currency-dkk">
-              <input className="mdl-radio__button" id="currency-dkk" type="radio" value="DKK" name="currency" defaultChecked={this._isCurrency("DKK")}/>
+              <input className="mdl-radio__button" id="currency-dkk" type="radio" value="DKK" name="currency" defaultChecked={this._isCurrency("DKK")} />
               <span className="mdl-radio__label">DKK</span>
             </label>
             <div className="divider"></div>
             <label className="mdl-radio mdl-js-radio mdl-js-ripple-effect" htmlFor="currency-eur">
-              <input className="mdl-radio__button" id="currency-eur" type="radio" value="EUR" name="currency" defaultChecked={this._isCurrency("EUR")}/>
+              <input className="mdl-radio__button" id="currency-eur" type="radio" value="EUR" name="currency" defaultChecked={this._isCurrency("EUR")} />
               <span className="mdl-radio__label">EUR</span>
             </label>
             <div className="divider"></div>
             <label className="mdl-radio mdl-js-radio mdl-js-ripple-effect" htmlFor="currency-usd">
-              <input className="mdl-radio__button" id="currency-usd" type="radio" value="USD" name="currency" defaultChecked={this._isCurrency("USD")}/>
+              <input className="mdl-radio__button" id="currency-usd" type="radio" value="USD" name="currency" defaultChecked={this._isCurrency("USD")} />
               <span className="mdl-radio__label">USD</span>
             </label>
           </div>
           <div>
-            <img src={this.props.image} alt=""/>
+            <img src={this.props.image} alt="" />
           </div>
           <InputFile
-            ref="image"/>
+            ref="image" />
           <div>
-            <Button name="Close" type="button" onClick={this._handleClose}/>
+            <Button name="Close" type="button" onClick={this._handleClose} />
             <div className="divider"></div>
-            <Button name="Save" type="submit"/>
+            <Button name="Save" type="submit" />
           </div>
         </form>
       </div>

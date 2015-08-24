@@ -1,6 +1,6 @@
 "use strict";
 import {
-  ROUTE_CHANGE_REQUEST
+  ROUTE_CHANGE
 } from "../actions/routeActions";
 import {
   PRODUCT_CREATE_RESPONSE,
@@ -18,7 +18,7 @@ const initialState = {
 
 export default function routeReducer(state = initialState, action) {
   switch (action.type) {
-    case ROUTE_CHANGE_REQUEST:
+    case ROUTE_CHANGE:
       return Object.assign({}, state, {
         route: action.route,
         id: action.id

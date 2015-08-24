@@ -4,6 +4,16 @@ import { create, destroy, fetchAll, update } from "../api/api";
 const productSchema = new Schema("products", { idAttribute: "id" });
 const ENTITY_NAME = "product";
 
+export const PRODUCT_ERROR_INITIALIZATION = "PRODUCT_ERROR_INITIALIZATION";
+
+export function initializeProductError() {
+  return dispatch => {
+    dispatch({
+      type: PRODUCT_ERROR_INITIALIZATION
+    });
+  };
+}
+
 export const PRODUCT_CREATE_REQUEST = "PRODUCT_CREATE_REQUEST";
 export const PRODUCT_CREATE_RESPONSE = "PRODUCT_CREATE_RESPONSE";
 export const PRODUCT_CREATE_ERROR = "PRODUCT_CREATE_ERROR";

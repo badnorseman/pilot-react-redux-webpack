@@ -1,6 +1,6 @@
 "use strict";
 import React, { Component } from "react";
-import ProductMain from "../components/products/ProductMain";
+import ProductMain from "../components/products";
 import Footer from "../components/Footer";
 
 export default class Main extends Component {

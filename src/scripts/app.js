@@ -4,7 +4,7 @@ import React from "react";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
-import Main from "./containers/Main";
+import Main from "./components";
 import "./app.css";
 
 const store = configureStore();

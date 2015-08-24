@@ -27,9 +27,6 @@ class ProductMain extends Component {
     componentHandler.upgradeDom();
   }
 
-  componentWillReceiveProps(nextProps) {
-  }
-
   _getEditProduct(errors = [], product = {}) {
     return (
       <EditProduct
@@ -65,32 +62,28 @@ class ProductMain extends Component {
   }
 
   _handleClose() {
-    this._changeRoute();
+    const { dispatch } = this.props;
+    dispatch(changeRoute("LIST"));
   }
 
   _handleEdit(product) {
     const { dispatch } = this.props;
     dispatch(updateProduct(product));
-    this._changeRoute();
   }
 
   _handleNew() {
-    this._changeRoute("NEW");
+    const { dispatch } = this.props;
+    dispatch(changeRoute("NEW"));
   }
 
   _handleRemove(id) {
     const { dispatch } = this.props;
     dispatch(destroyProduct(id));
-    this._changeRoute();
   }
 
   _handleSelect(id) {
-    this._changeRoute("EDIT", id);
-  }
-
-  _changeRoute(route = "LIST", id = 0) {
     const { dispatch } = this.props;
-    dispatch(changeRoute({ route: route, id: id }));
+    dispatch(changeRoute("EDIT", id));
   }
 
   render() {
@@ -103,7 +96,7 @@ class ProductMain extends Component {
         content = this._getEditProduct(errors, product);
         break;
       case "NEW":
-        content = this._getNewProduct();
+        content = this._getNewProduct(errors);
         break;
       default:
         content = this._getProductList(products);

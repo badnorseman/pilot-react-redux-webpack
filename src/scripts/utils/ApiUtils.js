@@ -1,4 +1,5 @@
 "use strict";
+// const API = "https://matrix-api.herokuapp.com/api";
 const API = "http://localhost:3000/api";
 
 export function getFormData(entityName, data) {
@@ -14,7 +15,7 @@ export function getFormData(entityName, data) {
 export function getHeaders() {
   return {
     "Authorization": `Token token=${localStorage.token}`
-  }
+  };
 }
 
 export function getUrl(entityName, params) {

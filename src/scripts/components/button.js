@@ -1,10 +1,15 @@
 "use strict";
+import $ from "jquery";
 import React, { Component, PropTypes } from "react";
 
 export default class Button extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired
+  }
+
+  static defaultProps = {
+    onClick: $.noop
   }
 
   constructor(props) {

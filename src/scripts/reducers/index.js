@@ -3,9 +3,9 @@ import { combineReducers } from "redux";
 import productReducer from "./productReducer";
 import routeReducer from "./routeReducer";
 
-const combinedReducers = combineReducers({
+const mainReducer = combineReducers({
   productReducer,
   routeReducer
 });
 
-export default combinedReducers;
+export default mainReducer;

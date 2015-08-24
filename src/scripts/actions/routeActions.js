@@ -1,13 +1,11 @@
-export const ROUTE_CHANGE_REQUEST = "ROUTE_CHANGE_REQUEST";
-
-function changeRouteRequest(route, id) {
-  return {
-    type: ROUTE_CHANGE_REQUEST,
-    route: route,
-    id: id
-  };
-}
+export const ROUTE_CHANGE = "ROUTE_CHANGE";
 
 export function changeRoute(route, id) {
-  return dispatch => dispatch(changeRouteRequest(route, id));
+  return dispatch => {
+    dispatch({
+      type: ROUTE_CHANGE,
+      route: route,
+      id: id
+    });
+  };
 }

@@ -1,5 +1,6 @@
 "use strict";
 import {
+  PRODUCT_ERROR_INITIALIZATION,
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_RESPONSE,
   PRODUCT_CREATE_ERROR,
@@ -22,6 +23,11 @@ const initialState = {
 
 export default function productReducer(state = initialState, action) {
   switch (action.type) {
+    case PRODUCT_ERROR_INITIALIZATION:
+      return Object.assign({}, state, {
+        errors: []
+      });
+
     case PRODUCT_CREATE_REQUEST:
     case PRODUCT_DESTROY_REQUEST:
     case PRODUCT_FETCH_REQUEST:

@@ -2,7 +2,13 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { changeRoute } from "../../actions/routeActions";
-import { createProduct, destroyProduct, getProducts, updateProduct } from "../../actions/productActions";
+import {
+  initializeProductError,
+  createProduct,
+  destroyProduct,
+  getProducts,
+  updateProduct
+} from "../../actions/productActions";
 import ProductList from "./ProductList";
 import EditProduct from "./EditProduct";
 import NewProduct from "./NewProduct";
@@ -63,6 +69,7 @@ class ProductMain extends Component {
 
   _handleClose() {
     const { dispatch } = this.props;
+    dispatch(initializeProductError());
     dispatch(changeRoute("LIST"));
   }
 

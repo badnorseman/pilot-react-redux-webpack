@@ -29,10 +29,10 @@ export default class Main extends Component {
           </div>
           <main className="mdl-layout__content">
             <div className="page-content">
-              <ProductMain/>
+              <ProductMain />
             </div>
             <div className="mdl-layout-spacer"></div>
-            <Footer/>
+            <Footer />
           </main>
         </div>
       </div>

@@ -25,7 +25,7 @@ export default class InputFile extends Component {
           type="file"
           ref="selectedFile"
           accept="image/jpeg, image/jpg, image/png"
-          onChange={this._handleChange}/>
+          onChange={this._handleChange} />
         <label
           htmlFor="file--selected">
         </label>

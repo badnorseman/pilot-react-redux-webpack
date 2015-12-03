@@ -1,5 +1,4 @@
 "use strict";
-// const API = "https://matrix-api.herokuapp.com/api";
 const API = "http://localhost:3000/api";
 
 export function getFormData(entityName, data) {
